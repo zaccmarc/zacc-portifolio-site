@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Isaac Marcolino</title>
+    <meta name="description"
+        content="Personal portfolio of Isaac Marcolino - Software Engineer Student | Python | Java | ML ">
+
+    <link rel="icon" href="images/favicon.ico">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-white text-gray-900 font-sans" x-data="{ open: false }">
+    <header class="fixed top-0 w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#about" class="text-2xl font-bold">Isaac Marcolino</a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#about" class="hover:underline">About</a>
+                <a href="#articles" class="hover:underline">Articles</a>
+                <a href="#experience" class="hover:underline">Experience</a>
+                <a href="#education" class="hover:underline">Education</a>
+                <a href="#certificates" class="hover:underline">Certificates</a>
+
+            </nav>
+            <button class="md:hidden" @click="open = !open">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <nav x-show="open" class="md:hidden bg-white shadow-inner">
+            <a href="#about" class="block px-6 py-3 hover:bg-gray-100">About</a>
+            <a href="#articles" class="block px-6 py-3 hover:bg-gray-100">Articles</a>
+            <a href="#experience" class="block px-6 py-3 hover:bg-gray-100">Experience</a>
+            <a href="#education" class="block px-6 py-3 hover:bg-gray-100">Education</a>
+            <a href="#certificates" class="block px-6 py-3 hover:bg-gray-100">Certificates</a>
+
+        </nav>
+    </header>
+
+    <main class="pt-24 pb-20">
+        <section id="about" class="section" x-intersect:enter="activeSection = 'about'">
+            <div class="container mx-auto px-6 text-center md:text-left">
+                <div class="flex flex-col md:flex-row gap-12 items-center md:items-start">
+                    <div class="ml-10">
+                        <h1 class="text-6xl md:text-7xl font-thin mb-4 opacity-0 animate-fade-in"
+                            style="animation-delay: 0.4s">Hello, I'm Isaac</h1>
+                        <h2 class="text-xl text-gray-600 mb-6 opacity-0 animate-fade-in" style="animation-delay: 0.6s">
+                            Software Engineer Student | Python | Java | ML </h2>
+                        <p class="text-gray-700 mb-4 max-w-2xl leading-relaxed opacity-0 animate-fade-in"
+                            style="animation-delay: 0.8s">Hello, I'm Isaac, a Computer Engineering student at
+                            Universidade Anhanguera São Paulo, focused on Software Development with expertise in Python,
+                            Java, and Machine Learning
+                        </p>
+                        <p class="text-gray-700 mb-4 max-w-2xl leading-relaxed opacity-0 animate-fade-in"
+                            style="animation-delay: 0.8s">I am skilled in Object-Oriented Programming (OOP), Data
+                            Structures and Algorithms (DSA), Git, and GitHub. Furthering my knowledge, I hold
+                            certifications including Mathematics for Machine Learning (Imperial College London), Java
+                            and Java OOP (Alura), SQL & Python for Data Science (Alura - Oracle Next Education), and
+                            Data Analytics for Google (Coursera)</p>
+                        <p class="text-gray-700 mb-4 max-w-2xl leading-relaxed opacity-0 animate-fade-in"
+                            style="animation-delay: 0.8s"> My current internship at 99 is significantly enhancing my
+                            experience in data engineering, data analysis, and business insights. I am passionate about
+                            developing innovative software solutions and have a strong ambition to specialize in mobile
+                            development, aiming to create impactful applications.</p>
+                        <div class="flex space-x-4 justify-center md:justify-start opacity-0 animate-fade-in"
+                            style="animation-delay: 1s">
+                            <a href="https://www.linkedin.com/in/isaac-marcolino/" target="_blank"
+                                rel="noopener noreferrer" class="btn-primary">LinkedIn</a>
+                            <a href="https://github.com/zaccmarc" target="_blank" rel="noopener noreferrer"
+                                class="btn-secondary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="articles" class="section" x-intersect:enter="activeSection = 'articles'">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Articles</h2>
+                <p class="section-description">Thoughts and insights on data, development, and technology.</p>
+
+                <div class="mt-12">
+                    <div class="splide articles-carousel" aria-label="Latest Articles Carousel">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+
+                                <li class="splide__slide">
+                                    <article class="article-card flex flex-col h-full">
+                                        <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/Portifolio site/images/ROBO SEGUIDOR DE LINHA.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="p-2 flex flex-col flex-grow">
+                                            <span class="text-sm text-gray-500">Jun, 2025</span>
+                                            <h3 class="text-xl font-medium mt-2 mb-3">Building an Arduino-Based
+                                                Line-Following Robot
+                                            </h3>
+                                            <p class="text-gray-700 mb-4 flex-grow">Learn how to assemble a compact
+                                                line-following robot using an Arduino UNO, infrared sensors, and simple
+                                                motor control logic. This quick guide walks you through wiring,
+                                                calibrating the sensors, and programming the PID loop so your robot can
+                                                smoothly trace a course with reliable, autonomous navigation..</p>
+                                            <div class="mt-auto flex items-center space-x-4">
+                                                <a href="https://www.linkedin.com/pulse/building-arduino-based-line-following-robot-isaac-ferreira-marcolino-krtpf"
+                                                    class="text-gray-900 font-medium hover:underline">Read more →</a>
+                                                <a href="https://github.com/zaccmarc/Robot-Project"
+                                                    class="text-blue-600 font-medium hover:underline"
+                                                    target="_blank">View Code →</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </li>
+
+                                <li class="splide__slide">
+                                    <article class="article-card flex flex-col h-full">
+                                        <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/Portifolio site/images/PageRank.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="p-2 flex flex-col flex-grow">
+                                            <span class="text-sm text-gray-500">Jun, 2025</span>
+                                            <h3 class="text-xl font-medium mt-2 mb-3">PageRank Algorithm using Power
+                                                Iteration
+                                            </h3>
+                                            <p class="text-gray-700 mb-4 flex-grow">In this piece I unpack the PageRank
+                                                algorithm through a linear-algebra lens—eigenvectors, stochastic
+                                                matrices and all the behind-the-scenes math that powers search
+                                                engines—then translate that theory into a concise Python demo that ranks
+                                                a toy web graph.</p>
+                                            <div class="mt-auto flex items-center space-x-4">
+                                                <a href="https://www.linkedin.com/pulse/pagerank-algorithm-using-power-iteration-isaac-ferreira-marcolino-nhkmf/?trackingId=RsYTU3jNTuSMnR6y7rEqnw%3D%3D"
+                                                    class="text-gray-900 font-medium hover:underline">Read more →</a>
+                                                <a href="https://github.com/zaccmarc/PageRank-Algorithm"
+                                                    class="text-blue-600 font-medium hover:underline"
+                                                    target="_blank">View Code →</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </li>
+
+                                <li class="splide__slide">
+                                    <article class="article-card flex flex-col h-full">
+                                        <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/Portifolio site/images/ChatGPT Image Jun 1, 2025, 01_45_18 PM.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="p-2 flex flex-col flex-grow">
+                                            <span class="text-sm text-gray-500">May, 2025</span>
+                                            <h3 class="text-xl font-medium mt-2 mb-3">Sentment Analysis in 7 minutes
+                                            </h3>
+                                            <p class="text-gray-700 mb-4 flex-grow">A quick and practical NLP case using
+                                                Hugging Face,
+                                                BERT, and Python to classify emotions in Portuguese text.</p>
+                                            <div class="mt-auto flex items-center space-x-4">
+                                                <a href="https://www.linkedin.com/posts/isaac-marcolino_sentiment-analysis-in-7-minutes-activity-7315148052837625856-nriW?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnD5dQBG_mANzBhl8VROqe-a2Ezjj-aQwQ"
+                                                    class="text-gray-900 font-medium hover:underline">Read more →</a>
+                                                <a href="https://github.com/zaccmarc/Machine-Learning-Projects"
+                                                    class="text-blue-600 font-medium hover:underline"
+                                                    target="_blank">View Code →</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </li>
+
+
+                                <li class="splide__slide">
+                                    <article class="article-card flex flex-col h-full">
+                                        <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/Portifolio site/images/ChatGPT Image May 31, 2025, 02_48_06 PM.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="p-2 flex flex-col flex-grow">
+                                            <span class="text-sm text-gray-500">Dec, 2024</span>
+                                            <h3 class="text-xl font-medium mt-2 mb-3">How Computers Work Today + Coding
+                                                in Assembly</h3>
+                                            <p class="text-gray-700 mb-4 flex-grow">Alan Turing was a British
+                                                mathematician, logician,
+                                                and computer scientist, considered one of the fathers of modern computer
+                                                science. He
+                                                introduced the concept of the Turing machine.</p>
+                                            <div class="mt-auto flex items-center space-x-4">
+                                                <a href="https://www.linkedin.com/pulse/how-computers-work-today-coding-assembly-isaac-ferreira-marcolino-cviaf/"
+                                                    class="text-gray-900 font-medium hover:underline">Read more →</a>
+                                                <a href="https://github.com/zaccmarc/Assembly-Coding"
+                                                    class="text-blue-600 font-medium hover:underline"
+                                                    target="_blank">View Code →</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </li>
+
+                                <li class="splide__slide">
+                                    <article class="article-card flex flex-col h-full">
+                                        <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/Portifolio site/images/ChatGPT Image May 31, 2025, 02_50_13 PM.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="p-2 flex flex-col flex-grow">
+                                            <span class="text-sm text-gray-500">Nov, 2024</span>
+                                            <h3 class="text-xl font-medium mt-2 mb-3">Final Project of Machine Learning
+                                                with Python
+                                                Course</h3>
+                                            <p class="text-gray-700 mb-4 flex-grow">In this course, I explored
+                                                fundamental algorithms
+                                                like linear regression and SVM, and delved deeper into evaluation
+                                                metrics like log loss
+                                                and F1.</p>
+                                            <div class="mt-auto flex items-center space-x-4">
+                                                <a href="https://www.linkedin.com/posts/isaac-marcolino_projeto-final-do-curso-machine-learning-with-activity-7192599011579588608-j7YU"
+                                                    class="text-gray-900 font-medium hover:underline">Read more →</a>
+                                                <a href="https://github.com/zaccmarc/Machine-Learning-Projects"
+                                                    class="text-blue-600 font-medium hover:underline"
+                                                    target="_blank">View Code →</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </li>
+
+
+                                <li class="splide__slide">
+                                    <article class="article-card flex flex-col h-full">
+                                        <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/Portifolio site/images/ChatGPT Image May 31, 2025, 02_55_42 PM.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="p-2 flex flex-col flex-grow">
+                                            <span class="text-sm text-gray-500">May, 2023</span>
+                                            <h3 class="text-xl font-medium mt-2 mb-3">Structuring Docker Environment for
+                                                Kafka</h3>
+                                            <p class="text-gray-700 mb-4 flex-grow">I set up my Kafka environment using
+                                                Docker and
+                                                completed practical exercises to reinforce learning.</p>
+                                            <div class="mt-auto flex items-center space-x-4">
+                                                <a href="https://www.linkedin.com/pulse/estruturando-ambiente-docker-para-o-apache-kafka-ferreira-marcolino/"
+                                                    class="text-gray-900 font-medium hover:underline">Read more →</a>
+                                                <a href="https://github.com/zaccmarc/Structuring-Docker-Environment-for-Kafka"
+                                                    class="text-blue-600 font-medium hover:underline"
+                                                    target="_blank">View Code →</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </li>
+                                <li class="splide__slide">...</li> aqui se tiver mais artigos */}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 flex justify-center space-x-4">
+                    <a href="https://www.linkedin.com/in/isaac-marcolino/" class="btn-secondary">View All Articles</a>
+                    <a href="https://github.com/zaccmarc?tab=repositories" class="btn-secondary" target="_blank">View
+                        All Code</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section" x-intersect:enter="activeSection = 'experience'">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-description">My professional journey and work history.</p>
+
+                <div class="mt-12 space-y-12">
+                    <div class="experience-item">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                            <h3 class="text-xl font-medium">Analytics Engineer Intern in Operations</h3>
+                            <div class="flex items-center mt-2 md:mt-0">
+                                <span class="text-gray-700">99/didi</span>
+                                <span class="mx-2 text-gray-400">•</span>
+                                <span class="text-gray-500">2024 - present</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            Proficient in Pre-Training Models, and Data Engineering, with experience implementing
+                            pre-training models, optimizing data pipelines, and ETL processes. I am also skilled in
+                            Business Development, aligning data strategies with business goals, and possess a strong
+                            background in Data Analysis, using statistical methods to generate insights.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Hive SQL</span>
+                            <span class="skill-tag">Pre Training models</span>
+                            <span class="skill-tag">Data Engineering</span>
+                            <span class="skill-tag">Bussinees Development</span>
+                            <span class="skill-tag">Data Analysis</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                            <h3 class="text-xl font-medium">Analytics Engineer Intern</h3>
+                            <div class="flex items-center mt-2 md:mt-0">
+                                <span class="text-gray-700">Ogilvy Brasil.</span>
+                                <span class="mx-2 text-gray-400">•</span>
+                                <span class="text-gray-500">2023 - 2024</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            Worked on ETL process automation, API integration, and software development
+                            for data extraction. Conducted compliance and performance analysis, as well
+                            as data analysis for strategic insights.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Automation of ETL Processes</span>
+                            <span class="skill-tag">Integration with APIs</span>
+                            <span class="skill-tag">Software Development for Data Extraction</span>
+                            <span class="skill-tag">Compliance and Performance Analysis</span>
+                            <span class="skill-tag">Data Analysis for Strategic Insights</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section" x-intersect:enter="activeSection = 'education'">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Education</h2>
+                <p class="section-description">My academic background and formal education.</p>
+
+                <div class="mt-12 space-y-8">
+                    <div class="education-item">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                            <h3 class="text-xl font-medium">University Anhanguera of São Paulo</h3>
+                            <div class="flex items-center mt-2 md:mt-0">
+                                <span class="text-gray-700">Bachelor's degree in Computing
+                                    Engineer</span>
+                                <span class="mx-2 text-gray-400">•</span>
+                                <span class="text-gray-500">2022 - 2026</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">
+                            Focused on comprehensive software and hardware development, covering areas like programming,
+                            data structures, operating systems, computer architecture, and artificial intelligence, with
+                            practical application in projects such as the development of line-following robots. Strong
+                            emphasis on problem-solving, system optimization, and technological innovation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates" class="section" x-intersect:enter="activeSection = 'certificates'">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Certificates</h2>
+                <p class="section-description">Professional certifications and specialized training.</p>
+
+                <div class="mt-12">
+                    <div class="splide certificates-carousel" aria-label="Certificates Carousel">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+
+                                <li class="splide__slide">
+                                    <div class="certificate-card flex flex-col h-full">
+                                        <div class="p-6 border border-gray-100 rounded-lg flex flex-col flex-grow">
+                                            <span class="text-sm text-gray-500">2025</span>
+                                            <h3 class="text-xl font-medium mt-2 mb-3">Mathematics for Machine Learning
+                                            </h3>
+                                            <p class="text-gray-700 mb-4 flex-grow">Mathematical knowledge for
+                                                applications in data science and machine learning
+                                                .</p>
+                                            <div class="mt-auto">
+                                                <a href="https://www.linkedin.com/in/isaac-marcolino/"
+                                                    class="text-gray-900 font-medium hover:underline">View Certificate
+                                                    →</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="splide__slide">
+                                    <div class="certificate-card flex flex-col h-full">
+                                        <div class="p-6 border border-gray-100 rounded-lg flex flex-col flex-grow">
+                                            <span class="text-sm text-gray-500">2024</span>
+                                            <h3 class="text-xl font-medium mt-2 mb-3">IBM Machine Learning</h3>
+                                            <p class="text-gray-700 mb-4 flex-grow">Fundamentals of machine learning
+                                                algorithms, model evaluation, and application using scikit-learn.</p>
+                                            <div class="mt-auto">
+                                                <a href="https://www.linkedin.com/in/isaac-marcolino/"
+                                                    class="text-gray-900 font-medium hover:underline">View Certificate
+                                                    →</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="splide__slide">
+                                    <div class="certificate-card flex flex-col h-full">
+                                        <div class="p-6 border border-gray-100 rounded-lg flex flex-col flex-grow">
+                                            <span class="text-sm text-gray-500">2023</span>
+                                            <h3 class="text-xl font-medium mt-2 mb-3">Java and Java OOP</h3>
+                                            <p class="text-gray-700 mb-4 flex-grow">This certification validates
+                                                proficiency in Java programming fundamentals and the practical
+                                                application of Object-Oriented Programming (OOP) paradigms..</p>
+                                            <div class="mt-auto">
+                                                <a href="https://www.linkedin.com/in/isaac-marcolino/"
+                                                    class="text-gray-900 font-medium hover:underline">View Certificate
+                                                    →</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="splide__slide">
+                                    <div class="certificate-card flex flex-col h-full">
+                                        <div class="p-6 border border-gray-100 rounded-lg flex flex-col flex-grow">
+                                            <span class="text-sm text-gray-500">2023</span>
+                                            <h3 class="text-xl font-medium mt-2 mb-3">SQL & Python for Data Science</h3>
+                                            <p class="text-gray-700 mb-4 flex-grow">Proficient in SQL for querying and
+                                                Python for analysis, visualization, and automation using Pandas, NumPy,
+                                                and
+                                                Matplotlib.</p>
+                                            <div class="mt-auto">
+                                                <a href="https://www.linkedin.com/in/isaac-marcolino/"
+                                                    class="text-gray-900 font-medium hover:underline">View Certificate
+                                                    →</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="splide__slide">
+                                    <div class="certificate-card flex flex-col h-full">
+                                        <div class="p-6 border border-gray-100 rounded-lg flex flex-col flex-grow">
+                                            <span class="text-sm text-gray-500">2023</span>
+                                            <h3 class="text-xl font-medium mt-2 mb-3">Google Data Analytics</h3>
+                                            <p class="text-gray-700 mb-4 flex-grow">Comprehensive training in data
+                                                analysis,
+                                                including SQL, R, Tableau, and spreadsheet tools.</p>
+                                            <div class="mt-auto">
+                                                <a href="https://www.linkedin.com/in/isaac-marcolino/"
+                                                    class="text-gray-900 font-medium hover:underline">View Certificate
+                                                    →</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="splide__slide">...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 flex justify-center">
+                    <a href="#" class="btn-secondary">View All Certificates</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-50 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <p class="text-gray-600">&copy; 2025 Isaac Marcolino. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://www.linkedin.com/in/isaac-marcolino/" class="text-gray-600 hover:text-gray-900">
+                        <span class="sr-only">LinkedIn</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                    <a href=" https://github.com/zaccmarc" class="text-gray-600 hover:text-gray-900">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900">
+                        <span class="sr-only">Dribbble</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop"
+        class="fixed bottom-8 right-8 p-2 rounded-full bg-gray-900 text-white shadow-lg transform transition-transform duration-300 opacity-0 translate-y-16 hover:bg-gray-800 focus:outline-none"
+        @click="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

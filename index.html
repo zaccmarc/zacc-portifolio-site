@@ -25,11 +25,50 @@
         };
     </script>
 
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="bg-white text-gray-900 font-sans" x-data="{ open: false }">
-    <header class="fixed top-0 w-full bg-white shadow-md z-50">
+
+    <div x-show="open" x-transition:enter="transition-opacity ease-linear duration-300"
+        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+        x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0" class="fixed inset-0 bg-gray-600 bg-opacity-50 z-40 md:hidden"
+        @click="open = false" style="display: none;"></div>
+
+    <nav x-show="open" x-transition:enter="transform transition ease-in-out duration-300"
+        x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+        x-transition:leave="transform transition ease-in-out duration-300" x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="translate-x-full"
+        class="fixed top-0 right-0 h-full w-3/4 max-w-sm bg-white shadow-lg z-50 p-6 md:hidden flex flex-col"
+        @keydown.escape.window="open = false" style="display: none;">
+
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-xl font-bold">Menu</h2>
+            <button @click="open = false" class="text-gray-500 hover:text-gray-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="flex flex-col space-y-4">
+            <a href="#about" class="text-lg text-gray-700 hover:bg-gray-100 p-2 rounded" @click="open = false">About</a>
+            <a href="#articles" class="text-lg text-gray-700 hover:bg-gray-100 p-2 rounded"
+                @click="open = false">Articles</a>
+            <a href="#experience" class="text-lg text-gray-700 hover:bg-gray-100 p-2 rounded"
+                @click="open = false">Experience</a>
+            <a href="#education" class="text-lg text-gray-700 hover:bg-gray-100 p-2 rounded"
+                @click="open = false">Education</a>
+            <a href="#certificates" class="text-lg text-gray-700 hover:bg-gray-100 p-2 rounded"
+                @click="open = false">Certificates</a>
+        </div>
+    </nav>
+
+    <header class="fixed top-0 w-full bg-white shadow-md z-30">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#about" class="text-2xl font-bold">Isaac Marcolino</a>
             <nav class="hidden md:flex space-x-6">
@@ -38,7 +77,6 @@
                 <a href="#experience" class="hover:underline">Experience</a>
                 <a href="#education" class="hover:underline">Education</a>
                 <a href="#certificates" class="hover:underline">Certificates</a>
-
             </nav>
             <button class="md:hidden" @click="open = !open">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -47,21 +85,13 @@
                 </svg>
             </button>
         </div>
-        <nav x-show="open" class="md:hidden bg-white shadow-inner">
-            <a href="#about" class="block px-6 py-3 hover:bg-gray-100">About</a>
-            <a href="#articles" class="block px-6 py-3 hover:bg-gray-100">Articles</a>
-            <a href="#experience" class="block px-6 py-3 hover:bg-gray-100">Experience</a>
-            <a href="#education" class="block px-6 py-3 hover:bg-gray-100">Education</a>
-            <a href="#certificates" class="block px-6 py-3 hover:bg-gray-100">Certificates</a>
-
-        </nav>
     </header>
 
     <main class="pt-24 pb-20">
         <section id="about" class="section" x-intersect:enter="activeSection = 'about'">
             <div class="container mx-auto px-6 text-center md:text-left">
                 <div class="flex flex-col md:flex-row gap-12 items-center md:items-start">
-                    <div class="ml-10">
+                    <div>
                         <h1 class="text-6xl md:text-7xl font-thin mb-4 opacity-0 animate-fade-in"
                             style="animation-delay: 0.4s">Hello, I'm Isaac</h1>
                         <h2 class="text-xl text-gray-600 mb-6 opacity-0 animate-fade-in" style="animation-delay: 0.6s">
@@ -78,10 +108,12 @@
                             and Java OOP (Alura), SQL & Python for Data Science (Alura - Oracle Next Education), and
                             Data Analytics for Google (Coursera)</p>
                         <p class="text-gray-700 mb-4 max-w-2xl leading-relaxed opacity-0 animate-fade-in"
-                            style="animation-delay: 0.8s"> My current internship at 99 is significantly enhancing my
-                            experience in data engineering, data analysis, and business insights. I am passionate about
-                            developing innovative software solutions and have a strong ambition to specialize in mobile
-                            development, aiming to create impactful applications.</p>
+                            style="animation-delay: 0.8s"> I currently work as an intern at 99, where I have deepened my
+                            knowledge in engineering and data analysis, in addition to developing a strong understanding
+                            of the business and generating insights.
+                            At the same time, I maintain my focus on software engineering, with the aim of creating
+                            impactful
+                            technological solutions that combine data and software applications.</p>
                         <div class="flex space-x-4 justify-center md:justify-start opacity-0 animate-fade-in"
                             style="animation-delay: 1s">
                             <a href="https://www.linkedin.com/in/isaac-marcolino/" target="_blank"
@@ -100,15 +132,21 @@
                 <p class="section-description">Thoughts and insights on data, development, and technology.</p>
 
                 <div class="mt-12">
-                    <div class="splide articles-carousel" aria-label="Latest Articles Carousel">
+                    <div class="splide articles-carousel pb-12" aria-label="Latest Articles Carousel">
                         <div class="splide__track">
                             <ul class="splide__list">
 
                                 <li class="splide__slide">
                                     <article class="article-card flex flex-col h-full">
+<<<<<<< HEAD
                                         <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
                                             <img src="images/robo-seguidor-de-linha.png"
                                                 alt="Imagem de Demonstração" class="w-full h-full object-cover">
+=======
+                                        <div class="mb-4 h-70 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/images/ROBO SEGUIDOR DE LINHA.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+>>>>>>> 1a040f1 (Alterando cards e deixando responsivo)
                                         </div>
                                         <div class="p-2 flex flex-col flex-grow">
                                             <span class="text-sm text-gray-500">Jun, 2025</span>
@@ -133,9 +171,15 @@
 
                                 <li class="splide__slide">
                                     <article class="article-card flex flex-col h-full">
+<<<<<<< HEAD
                                         <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
                                             <img src="images/PageRank.png"
                                                 alt="Imagem de Demonstração" class="w-full h-full object-cover">
+=======
+                                        <div class="mb-4 h-70 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/images/PageRank.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+>>>>>>> 1a040f1 (Alterando cards e deixando responsivo)
                                         </div>
                                         <div class="p-2 flex flex-col flex-grow">
                                             <span class="text-sm text-gray-500">Jun, 2025</span>
@@ -160,9 +204,15 @@
 
                                 <li class="splide__slide">
                                     <article class="article-card flex flex-col h-full">
+<<<<<<< HEAD
                                         <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
                                             <img src="images/chatgpt-image-jun-1-2025-01_45_18-pm.png"
                                                 alt="Imagem de Demonstração" class="w-full h-full object-cover">
+=======
+                                        <div class="mb-4 h-70 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/images/ChatGPT Image Jun 1, 2025, 01_45_18 PM.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+>>>>>>> 1a040f1 (Alterando cards e deixando responsivo)
                                         </div>
                                         <div class="p-2 flex flex-col flex-grow">
                                             <span class="text-sm text-gray-500">May, 2025</span>
@@ -185,9 +235,15 @@
 
                                 <li class="splide__slide">
                                     <article class="article-card flex flex-col h-full">
+<<<<<<< HEAD
                                         <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
                                             <img src="images/chatgpt-image-may-31-2025-02_48_06-pm.png"
                                                 alt="Imagem de Demonstração" class="w-full h-full object-cover">
+=======
+                                        <div class="mb-4 h-70 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/images/ChatGPT Image May 31, 2025, 02_48_06 PM.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+>>>>>>> 1a040f1 (Alterando cards e deixando responsivo)
                                         </div>
                                         <div class="p-2 flex flex-col flex-grow">
                                             <span class="text-sm text-gray-500">Dec, 2024</span>
@@ -211,9 +267,15 @@
 
                                 <li class="splide__slide">
                                     <article class="article-card flex flex-col h-full">
+<<<<<<< HEAD
                                         <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
                                             <img src="images/chatgpt-image-may-31-2025-02_50_13-pm.png"
                                                 alt="Imagem de Demonstração" class="w-full h-full object-cover">
+=======
+                                        <div class="mb-4 h-70 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/images/ChatGPT Image May 31, 2025, 02_50_13 PM.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+>>>>>>> 1a040f1 (Alterando cards e deixando responsivo)
                                         </div>
                                         <div class="p-2 flex flex-col flex-grow">
                                             <span class="text-sm text-gray-500">Nov, 2024</span>
@@ -239,9 +301,15 @@
 
                                 <li class="splide__slide">
                                     <article class="article-card flex flex-col h-full">
+<<<<<<< HEAD
                                         <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
                                             <img src="images/chatgpt-image-may-31-2025-02_55_42-pm.png"
                                                 alt="Imagem de Demonstração" class="w-full h-full object-cover">
+=======
+                                        <div class="mb-4 h-70 w-full overflow-hidden rounded-lg">
+                                            <img src="/home/zacc-marc/Desktop/Zacc Workspace/Portifolio Site/images/ChatGPT Image May 31, 2025, 02_55_42 PM.png"
+                                                alt="Imagem de Demosntração" class="w-full h-full object-cover">
+>>>>>>> 1a040f1 (Alterando cards e deixando responsivo)
                                         </div>
                                         <div class="p-2 flex flex-col flex-grow">
                                             <span class="text-sm text-gray-500">May, 2023</span>
@@ -260,7 +328,7 @@
                                         </div>
                                     </article>
                                 </li>
-                                <li class="splide__slide">...</li> aqui se tiver mais artigos */}
+                                <li class="splide__slide">...</li>
                             </ul>
                         </div>
                     </div>
@@ -364,7 +432,7 @@
                 <p class="section-description">Professional certifications and specialized training.</p>
 
                 <div class="mt-12">
-                    <div class="splide certificates-carousel" aria-label="Certificates Carousel">
+                    <div class="splide certificates-carousel pb-12" aria-label="Certificates Carousel">
                         <div class="splide__track">
                             <ul class="splide__list">
 

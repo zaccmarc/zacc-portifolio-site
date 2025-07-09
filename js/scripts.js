@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Função principal que envia a mensagem
-    async function handleSendMessage(event, isFromFloatingBar = false) {
+    window.handleSendMessage = async function (event, isFromFloatingBar = false) {
         event.preventDefault();
 
         // Decide qual input usar: o flutuante ou o do modal
@@ -230,6 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
             removeTypingIndicator();
             appendMessage('ai', 'Desculpe, ocorreu um erro. Por favor, tente novamente.');
         }
+
     }
 
     // Função para limpar o histórico do chat e remover o desfoque

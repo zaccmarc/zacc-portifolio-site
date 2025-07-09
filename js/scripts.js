@@ -125,4 +125,137 @@ document.addEventListener('DOMContentLoaded', function () {
     certificateCards.forEach((card, index) => {
         card.style.animationDelay = `${0.1 + (index * 0.1)}s`;
     });
+
+    // IMPORTANTE: Cole aqui a URL da sua API do Cloudflare Worker
+    const API_URL = 'https://portfolio-chatbot-api.marcworkspace.workers.dev/';
+
+    // Seleção de Elementos do DOM
+    const floatingChatInput = document.getElementById('floating-chat-input');
+    const chatModal = document.getElementById('chat-modal');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const messageHistory = document.getElementById('message-history');
+    const mainContent = document.getElementById('main-content'); // Adicione este ID ao seu <main> ou <div> principal no HTML
+
+    // Guarda a primeira mensagem (boas-vindas) para poder restaurá-la
+    const welcomeMessageHTML = messageHistory.innerHTML;
+
+    // Função para adicionar uma mensagem na tela
+    function appendMessage(sender, text) {
+        // Escapa caracteres HTML para segurança
+        const sanitizedText = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+        let messageDiv;
+        if (sender === 'user') {
+            messageDiv = `
+                <div class="flex justify-end">
+                    <div class="bg-blue-600 text-white rounded-lg py-2 px-4 max-w-xs md:max-w-md">
+                        <p class="text-sm">${sanitizedText}</p>
+                    </div>
+                </div>`;
+        } else { // sender === 'ai'
+            messageDiv = `
+                <div class="flex items-start gap-3">
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-white font-bold text-sm">AI</div>
+                    <div class="bg-gray-700 rounded-lg py-2 px-4 max-w-xs md:max-w-md">
+                        <p class="text-sm text-gray-200">${sanitizedText}</p>
+                    </div>
+                </div>`;
+        }
+        messageHistory.insertAdjacentHTML('beforeend', messageDiv);
+        messageHistory.scrollTop = messageHistory.scrollHeight; // Auto-scroll
+    }
+
+    // Funções para o indicador de "digitando..."
+    function showTypingIndicator() {
+        const typingIndicatorHTML = `
+            <div id="typing-indicator" class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-white font-bold text-sm">AI</div>
+                <div class="bg-gray-700 rounded-lg py-2 px-4 max-w-xs">
+                    <div class="flex items-center space-x-1">
+                        <span class="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                        <span class="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                        <span class="h-2 w-2 bg-gray-400 rounded-full animate-bounce"></span>
+                    </div>
+                </div>
+            </div>`;
+        messageHistory.insertAdjacentHTML('beforeend', typingIndicatorHTML);
+        messageHistory.scrollTop = messageHistory.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) indicator.remove();
+    }
+
+    // Função principal que envia a mensagem
+    async function handleSendMessage(event, isFromFloatingBar = false) {
+        event.preventDefault();
+
+        // Decide qual input usar: o flutuante ou o do modal
+        const inputElement = isFromFloatingBar ? floatingChatInput : chatInput;
+        const userMessage = inputElement.value.trim();
+
+        if (!userMessage) return;
+
+        // Se a mensagem veio da barra flutuante, limpa o histórico antes de começar
+        if (isFromFloatingBar) {
+            clearChatHistory();
+        }
+
+        appendMessage('user', userMessage);
+        inputElement.value = ''; // Limpa o input usado
+        if (!isFromFloatingBar) chatInput.focus(); // Mantém o foco no input do modal
+
+        showTypingIndicator();
+
+        // Adiciona a classe de desfoque no corpo do site
+        if (mainContent) mainContent.classList.add('chat-modal-open');
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userMessage }),
+            });
+
+            removeTypingIndicator();
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+            const data = await response.json();
+            appendMessage('ai', data.reply || "Não recebi uma resposta válida.");
+
+        } catch (error) {
+            console.error('Erro ao enviar mensagem:', error);
+            removeTypingIndicator();
+            appendMessage('ai', 'Desculpe, ocorreu um erro. Por favor, tente novamente.');
+        }
+    }
+
+    // Função para limpar o histórico do chat e remover o desfoque
+    window.clearChatHistory = function () {
+        messageHistory.innerHTML = welcomeMessageHTML; // Restaura a mensagem de boas-vindas
+        if (mainContent) mainContent.classList.remove('chat-modal-open');
+    }
+
+    // Event Listeners
+    // Adiciona o listener ao formulário dentro do modal
+    chatForm.addEventListener('submit', (e) => handleSendMessage(e, false));
+
+    // Cria um novo handler para o formulário flutuante
+    const floatingForm = floatingChatInput.closest('form');
+    if (floatingForm) {
+        floatingForm.addEventListener('submit', (e) => {
+            // Primeiro, abre o modal via AlpineJS (precisamos dar um "empurrãozinho" no Alpine)
+            const rootEl = floatingChatInput.closest('[x-data]');
+            if (rootEl && rootEl.__x) {
+                rootEl.__x.setData('chatOpen', true);
+            }
+            // Depois, envia a mensagem
+            handleSendMessage(e, true);
+            // Copia a mensagem para o input do modal, caso o usuário queira editar
+            chatInput.value = floatingChatInput.value;
+            floatingChatInput.value = '';
+        });
+    }
 });

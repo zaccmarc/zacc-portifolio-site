@@ -212,3 +212,136 @@ html {
         padding: 0.625rem 1.25rem;
     }
 }
+
+/* Cole este código no seu arquivo de estilos CSS */
+
+.search-container {
+    position: relative;
+    /* Necessário para posicionar o texto flutuante */
+    width: 100%;
+    max-width: 600px;
+    /* Ajuste a largura máxima conforme necessário */
+    margin: 40px auto;
+    /* Centraliza o container */
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #dfe1e5;
+    border-radius: 9999px;
+    /* Bordas totalmente arredondadas */
+    padding: 10px 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.search-bar:hover,
+.search-bar:focus-within {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-color: transparent;
+}
+
+.search-icon {
+    font-style: normal;
+    margin-right: 15px;
+    color: #9aa0a6;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+    color: #3c4043;
+}
+
+.send-button {
+    background-color: #1a73e8;
+    /* Cor de envio, pode ser preta também */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+    background-color: #185abc;
+    /* Cor ao passar o mouse */
+}
+
+.send-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.floating-text {
+    /* Efeito flutuante, sem caixa */
+    text-align: center;
+    margin-top: 8px;
+    /* Espaço entre a barra e o texto */
+    font-size: 12px;
+    color: #5f6368;
+}
+
+/* ========================================= */
+/* SEU CÓDIGO DE BRILHO (já incluído no HTML) */
+/* ========================================= */
+.floating-glow {
+    box-shadow: 0 0 15px 3px rgba(59, 130, 246, 0.4);
+    animation: pulse-glow 3s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 15px 3px rgba(59, 130, 246, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 25px 8px rgba(59, 130, 246, 0.2);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 3px rgba(59, 130, 246, 0.4);
+    }
+}
+
+/* ========================================= */
+/* ESTILOS PARA O ASSISTENTE DE IA */
+/* ========================================= */
+
+/* Efeito de brilho pulsante para a barra de pesquisa flutuante */
+.floating-glow {
+    box-shadow: 0 0 15px 3px rgba(59, 130, 246, 0.4);
+    /* Cor azul do seu site */
+    animation: pulse-glow 3s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 15px 3px rgba(59, 130, 246, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 25px 8px rgba(59, 130, 246, 0.2);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 3px rgba(59, 130, 246, 0.4);
+    }
+}
+
+/* Efeito de desfoque para o fundo quando o modal está aberto */
+body.chat-modal-open #main-content {
+    /* Use o ID do seu container principal */
+    filter: blur(5px);
+    transition: filter 0.3s ease-in-out;
+}

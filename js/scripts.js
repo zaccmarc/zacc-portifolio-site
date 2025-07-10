@@ -141,24 +141,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const welcomeMessageHTML = messageHistory.innerHTML;
 
     // Função para adicionar uma mensagem na tela
+    // SUBSTITUA A FUNÇÃO 'appendMessage' INTEIRA PELA VERSÃO ABAIXO
+
     function appendMessage(sender, text) {
         // Escapa caracteres HTML para segurança
         const sanitizedText = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
         let messageDiv;
         if (sender === 'user') {
+            // NOVO ESTILO: Bolha do usuário cinza claro, alinhada à direita.
             messageDiv = `
                 <div class="flex justify-end">
-                    <div class="bg-blue-600 text-white rounded-lg py-2 px-4 max-w-xs md:max-w-md">
+                    <div class="bg-gray-200 text-gray-800 rounded-lg py-2 px-4 max-w-xs md:max-w-md">
                         <p class="text-sm">${sanitizedText}</p>
                     </div>
                 </div>`;
         } else { // sender === 'ai'
+            // NOVO ESTILO: Resposta da IA sem bolha e sem ícone, alinhada à esquerda.
             messageDiv = `
-                <div class="flex items-start gap-3">
-                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-white font-bold text-sm">AI</div>
-                    <div class="bg-gray-700 rounded-lg py-2 px-4 max-w-xs md:max-w-md">
-                        <p class="text-sm text-gray-200">${sanitizedText}</p>
+                <div class="flex justify-start">
+                    <div class="py-2 px-4 max-w-xs md:max-w-md">
+                        <p class="text-sm text-gray-800">${sanitizedText}</p>
                     </div>
                 </div>`;
         }

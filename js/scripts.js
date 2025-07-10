@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (mainContent) mainContent.classList.add('chat-modal-open');
 
         try {
-            const response = await fetch(API_URL, {
+            const response = await fetch(API_URL + 'api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: userMessage }),

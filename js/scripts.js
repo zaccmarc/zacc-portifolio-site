@@ -169,16 +169,18 @@ document.addEventListener('DOMContentLoaded', function () {
         messageHistory.scrollTop = messageHistory.scrollHeight; // Auto-scroll
     }
 
+    // js/scripts.js
+
     // Funções para o indicador de "digitando..."
     function showTypingIndicator() {
         const typingIndicatorHTML = `
             <div id="typing-indicator" class="flex items-start gap-3">
-                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-white font-bold text-sm">AI</div>
+                
                 <div class="bg-gray-700 rounded-lg py-2 px-4 max-w-xs">
                     <div class="flex items-center space-x-1">
-                        <span class="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                        <span class="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-                        <span class="h-2 w-2 bg-gray-400 rounded-full animate-bounce"></span>
+                        <span class="h-2 w-2 bg-white rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                        <span class="h-2 w-2 bg-white rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                        <span class="h-2 w-2 bg-white rounded-full animate-bounce"></span>
                     </div>
                 </div>
             </div>`;

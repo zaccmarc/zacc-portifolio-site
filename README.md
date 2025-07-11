@@ -2,11 +2,87 @@
 
 Este é o repositório do site de portfólio pessoal de Isaac Marcolino, desenvolvido para apresentar suas habilidades, projetos, artigos e experiência profissional de forma moderna e responsiva.
 
-## Visão Geral
+# Assistente de IA com RAG para Portfólio Pessoal - Isaac Marcolino
 
-O site é uma página única (SPA - Single Page Application) estática, projetada com foco em performance e na experiência do usuário. Ele é totalmente responsivo, adaptando-se a desktops, tablets e dispositivos móveis.
+Este repositório contém o código e a documentação para um assistente de IA avançado, integrado a um site de portfólio pessoal. A aplicação utiliza uma arquitetura de Geração Aumentada por Recuperação (RAG) em um ambiente totalmente *serverless*, projetada para fornecer respostas precisas e baseadas em fatos sobre meu perfil profissional para potenciais recrutadores.
 
-## Tecnologias Utilizadas
+O objetivo principal deste projeto é demonstrar competência técnica na construção de soluções de IA modernas, robustas, escaláveis e de baixo custo, indo além de um portfólio estático para criar uma experiência interativa e inteligente.
+
+## Visão Geral da Arquitetura
+
+A solução abandona a abordagem inviável de usar modelos de IA locais para um site público, que apresenta falhas críticas de disponibilidade e segurança. Em seu lugar, foi implementada uma arquitetura
+
+*serverless* profissional, um padrão de design robusto e amplamente adotado na indústria.
+
+O fluxo de dados segue o padrão RAG:
+
+1. Um recrutador faz uma pergunta no chat do portfólio.
+2. O sistema converte a pergunta em uma representação numérica (um vetor de embedding).
+3. Esse vetor é usado para pesquisar em um banco de dados vetorial, que contém os vetores de todos os pedaços de informação da minha base de conhecimento.
+4. O banco de dados retorna os trechos de texto mais semanticamente relevantes para a pergunta.
+5. Esses trechos de texto são combinados com a pergunta original em um prompt "aumentado".
+6. Este prompt é enviado para a API de um LLM, que gera uma resposta fundamentada estritamente no contexto fornecido.
+
+Esta abordagem transforma a IA em um "motor de compreensão de leitura" altamente articulado e confiável.
+
+---
+
+### Backend: Construção e Tecnologias
+
+O "cérebro" da aplicação foi construído como uma API robusta e escalável, utilizando uma pilha de tecnologias *serverless* para garantir alta disponibilidade e custo zero.
+
+- **Tecnologias Utilizadas:**
+    - **Cloudflare Workers:** Plataforma de computação *serverless* que executa a lógica da API na borda da rede da Cloudflare, garantindo baixa latência global. O plano gratuito oferece 100.000 requisições/dia, o que torna a solução extremamente resiliente.
+    - 
+        
+        **Hono:** Framework de API ultraleve e rápido, otimizado para ambientes de borda como o Cloudflare Workers.
+        
+    - 
+        
+        **Cloudflare Vectorize:** Banco de dados vetorial nativo da Cloudflare, usado para armazenar e pesquisar as informações do meu perfil com base na similaridade semântica.
+        
+    - 
+        
+        **Cloudflare AI:** Serviço utilizado para gerar os *embeddings* (vetores numéricos) das perguntas dos usuários em tempo real.
+        
+    - 
+        
+        **Google Gemini API:** Modelo de linguagem grande (LLM) usado para gerar as respostas finais em linguagem natural, com base no contexto recuperado.
+        
+    - 
+        
+        **Cloudflare Secrets Store:** Serviço para armazenar de forma segura a chave da API do Google Gemini, evitando sua exposição no código.
+        
+- **Como foi Construído:**A API foi desenvolvida com o Hono, definindo um único endpoint
+    
+    `POST /api/chat`. Ao receber uma requisição, o Worker executa a lógica RAG: ele utiliza um "binding" nativo (
+    
+    `c.env.AI`) para gerar o embedding da pergunta, outro "binding" (`c.env.VECTORIZE_INDEX`) para consultar os dados relevantes no Vectorize e, por fim, chama a API do Gemini com a chave armazenada de forma segura para gerar a resposta final. Um middleware de CORS foi configurado para permitir a comunicação segura exclusivamente com o domínio do portfólio.
+    
+
+---
+
+### Processo de Ingestão de Dados
+
+A base de conhecimento da IA é populada através de um processo de ingestão executado localmente, garantindo que a API principal permaneça leve e rápida.
+
+- **Como foi Construído:**
+    1. 
+        
+        **Criação da Base de Conhecimento:** Todas as minhas informações profissionais foram consolidadas em um arquivo de texto simples, `about_me.txt`, estruturado com títulos e parágrafos focados para otimizar a recuperação de informações.
+        
+    2. **Preparação dos Dados:** Um script local em **Node.js** foi criado para ler o `about_me.txt`. Este script utiliza uma estratégia de "chunking" baseada em parágrafos para dividir o texto em pedaços semanticamente coesos.
+    3. 
+        
+        **Geração de Embeddings:** O script faz uma chamada à API REST da **Cloudflare AI** para converter cada chunk de texto em um vetor numérico (embedding).
+        
+    4. **Inserção de Dados:** Os vetores gerados são salvos em um arquivo `.jsonl` local. Em seguida, a interface de linha de comando **Wrangler** é usada para fazer o upload em massa desses vetores para o **Cloudflare Vectorize** de forma robusta e oficial.
+
+Este processo de duas etapas (preparar localmente, depois fazer o upload) é executado apenas quando preciso atualizar meu perfil, garantindo que a IA tenha sempre as informações mais recentes.
+
+---
+
+### Frontend: Comunicação e Tecnologias
 
 A implementação do site foi baseada em tecnologias front-end modernas, sem a necessidade de um back-end complexo.
 
